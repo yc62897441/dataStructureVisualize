@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import Layout from '../../components/Layout.jsx'
+import Layout from '../components/Layout.jsx'
 import {
     H1,
     H3,
@@ -10,7 +10,7 @@ import {
     Li,
     CodeWrapper,
     Code,
-} from '../../components/content/Content.jsx'
+} from '../components/content/Content.jsx'
 
 function Template() {
     return <Layout>Template</Layout>
