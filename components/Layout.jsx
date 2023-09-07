@@ -14,21 +14,21 @@ const LayoutWrapper = styled.main`
 
 const MainWrapper = styled.section`
     flex-grow: 1;
-    margin-top: 56px;
+    margin-top: 50px;
 
     @media (min-width: 768px) {
-        margin-top: 70px;
+        margin-top: 65px;
     }
 
     @media (min-width: 1600px) {
-        margin-top: 110px;
+        margin-top: 80px;
     }
 `
 
-const BackToTopWrapper = styled.div`
+const ScrollToTop = styled.div`
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 15px;
+    right: 20px;
     z-index: -9999;
     opacity: 0;
 
@@ -51,14 +51,14 @@ export default function Layout({ children }) {
         <LayoutWrapper>
             <Header />
             <MainWrapper>{children}</MainWrapper>
-            <BackToTopWrapper onClick={scrollToTop}>
+            <ScrollToTop onClick={scrollToTop}>
                 <Image
                     src="/images/arrow.png" // Route of the image file
                     width={40} // Desired size with correct aspect ratio
                     height={40} // Desired size with correct aspect ratio
                     alt="top arrow"
                 />
-            </BackToTopWrapper>
+            </ScrollToTop>
         </LayoutWrapper>
     )
 }

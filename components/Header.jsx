@@ -337,30 +337,28 @@ const Mask = styled.div`
 `
 
 const data = [
-    // 專案內部1
+    // // 專案內部1
     {
-        name: '專案內部1',
-        url: '/inner',
+        name: '演算法',
+        url: '/algorithm',
         subLinks: [
-            { name: 'A頁面', url: '/a' },
-            { name: 'A頁面', url: '/b' },
+            { name: '演算法概述', url: '/' },
+            { name: 'Big O', url: '/BigO' },
+            { name: '演算法設計概述', url: '/AlgorithmDesign' },
         ],
     },
-    // 專案內部2
+    // // 專案內部2
     {
-        name: '專案內部2',
-        url: '/inner',
-        subLinks: [
-            { name: 'A頁面', url: '/a' },
-            { name: 'A頁面', url: '/b' },
-        ],
+        name: '資料結構',
+        url: '/dataStructure',
+        subLinks: [],
     },
-    // 對外連結
-    {
-        name: 'Next.js 教學網',
-        url: 'https://nextjs.tw/learn/foundations/about-nextjs',
-        subLinks: [{ name: 'Next.js 教學網', url: '', target: '_blank' }],
-    },
+    // // 對外連結
+    // {
+    //     name: 'Next.js 教學網',
+    //     url: 'https://nextjs.tw/learn/foundations/about-nextjs',
+    //     subLinks: [{ name: 'Next.js 教學網', url: '', target: '_blank' }],
+    // },
 ]
 
 export default function Header() {
@@ -430,7 +428,10 @@ export default function Header() {
                 <BurgerBar />
             </BurgerContainer>
 
-            <LinksBarWrapper isLinksBarDropdown={isLinksBarDropdown} isHeaderShrink={isHeaderShrink}>
+            <LinksBarWrapper
+                isLinksBarDropdown={isLinksBarDropdown}
+                isHeaderShrink={isHeaderShrink}
+            >
                 {data.length > 0 &&
                     data.map((datum, index) => (
                         <LinksGroupContainer

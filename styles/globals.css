@@ -6,20 +6,6 @@ body {
         Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-section {
-    margin: 30px 0;
-}
-
-section div {
-    margin: 0 0 10px;
-}
-
-a {
-    color: inherit;
-    color: #004da0;
-    text-decoration: none;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -31,24 +17,19 @@ img {
 
 h1,
 h2,
-p,
-ul {
+h3,
+h4,
+h5,
+h6,
+p {
     margin: 0;
-}
-
-ul {
     padding: 0;
-    list-style: none;
 }
 
-button {
-    padding: 0.5rem 1rem;
-    font-weight: bold;
-}
-
-span {
-    font-weight: 600;
-    color: #b22222;
+a {
+    color: inherit;
+    color: #004da0;
+    text-decoration: none;
 }
 
 /* 文字反白 */

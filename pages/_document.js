@@ -10,8 +10,8 @@ function MyDocument() {
                 <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
                 <title>Next</title>
 
-                <meta name="description" content="Next.js 樣板" />
-                <meta name="keywords" content="關鍵字1,關鍵字2,關鍵字3" />
+                <meta name="description" content="演算法與資料結構視覺化" />
+                <meta name="keywords" content="演算法,資料結構,algorithm,data structure" />
 
                 {/* <link rel="shortcut icon" href="/public/images/favicon.ico" />
                 <link rel="apple-touch-icon" href="/public/images/favicon.ico" /> */}
