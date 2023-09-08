@@ -303,6 +303,127 @@ function AlgorithmDesign() {
                     </Code>
                 </CodeWrapper>
             </Paragraph>
+
+            <Paragraph>
+                <H3>Subsequence Problem</H3>
+                <Text>
+                    比較兩個字串，A字串中的字母順序，是否存在於B字串中(B字串可刪除中間多於不必要的字母、空格等)。
+                </Text>
+                <Text>使用 Pointer 來實作。</Text>
+                <CodeWrapper>
+                    <Code>
+                        // console.log(isSubsequenceString('book', 'my book')) // true <br />
+                        // console.log(isSubsequenceString('book', 'brooklyn')) // true <br />
+                        // console.log(isSubsequenceString('abc', 'acb')) // false <br />
+                        function isSubsequenceString&#40;str1, str2&#41; &#123; <br />
+                        &ensp; let str1Index = 0 <br />
+                        &ensp; let str2Index = 0 <br />
+                        &ensp; while &#40;str1Index &lt;= str1.length && str2Index &lt;=
+                        str2.length&#41; &ensp; &ensp; &#123; <br />
+                        &ensp; &ensp; if &#40;str1[str1Index] === str2[str2Index]&#41; &#123; <br />
+                        &ensp; &ensp; &ensp; str1Index++ <br />
+                        &ensp; &ensp; &ensp; str2Index++ <br />
+                        &ensp; &ensp; &#125; else &#123; <br />
+                        &ensp; &ensp; &ensp; str2Index++ <br />
+                        &ensp; &ensp; &#125; <br />
+                        &ensp; &ensp; if &#40;str1Index &gt;= str1.length&#41; &#123; <br />
+                        &ensp; &ensp; &ensp; return true <br />
+                        &ensp; &ensp; &#125; <br />
+                        &ensp; &#125; <br />
+                        &ensp; return false <br />
+                        &#125;
+                    </Code>
+                </CodeWrapper>
+            </Paragraph>
+
+            <Paragraph>
+                <H3>Sliding Window</H3>
+                <Text>sliding window 是一個 sub-list，跑遍整個 array。</Text>
+                <Text>
+                    例如從一個 array 中，找出三個數連續相加值為最大的
+                    sliding-window，以及相加值為最小的 sliding window。
+                </Text>
+                <CodeWrapper>
+                    <Code>
+                        // console.log&#40;slidingWindow&#40;[2, 7, 3, 0, 12, 1, -5, -12, -11],
+                        3&#41;&#41; // [ 15, -28 ] <br />
+                        // console.log(slidingWindow([8, 5, 9, 3, 2, 6, 14, 6, 2, 11], 3)) // [ 26,
+                        11 ] <br />
+                        function slidingWindow&#40;array, number&#41; &#123; <br />
+                        &ensp; if &#40;array.length &lt; number&#41; return null <br />
+                        <br />
+                        &ensp; // 找出起始相加的最大值、最小值 <br />
+                        &ensp; let maxSum = 0 <br />
+                        &ensp; let minSum = 0 <br />
+                        &ensp; for &#40;let i = 0; i &lt; number; i++&#41; &#123; <br />
+                        &ensp; &ensp; maxSum = maxSum + array[i] <br />
+                        &ensp; &ensp; minSum = minSum + array[i] <br />
+                        &ensp; &#125; <br />
+                        <br />
+                        &ensp; // 開始跑回圈，刪掉第一個數，加上下一個數。 <br />
+                        &ensp; let tempMaxSum = maxSum <br />
+                        &ensp; let tempMinSum = minSum <br />
+                        &ensp; for &#40;let i = 0; i &lt;= array.length - number; i++&#41; &#123;{' '}
+                        <br />
+                        &ensp; &ensp; tempMaxSum = tempMaxSum - array[i] + array[i + number] <br />
+                        &ensp; &ensp; tempMinSum = tempMinSum - array[i] + array[i + number] <br />
+                        &ensp; &ensp; if &#40;tempMaxSum &gt; maxSum&#41; maxSum = tempMaxSum <br />
+                        &ensp; &ensp; if &#40;tempMinSum &lt; minSum&#41; minSum = tempMinSum <br />
+                        &ensp; &#125; <br />
+                        &ensp; return [maxSum, minSum] <br />
+                        &#125;
+                    </Code>
+                </CodeWrapper>
+            </Paragraph>
+
+            <Paragraph>
+                <H3>Min Sub Array</H3>
+                <Text>
+                    在一個 Array 中找出最短的片段(sub array)，且片段中的每個值總加起來 &gt;=
+                    於目標值。
+                </Text>
+                <CodeWrapper>
+                    <Code>
+                        // console.log(minSubArray2([8, 1, 6, 15, 3, 16, 5, 7, 14, 30, 12], 60)) //
+                        4 <br />
+                        // console.log(minSubArray2([2, 3, 1, 2, 4, 3], 7)) // 2 <br />
+                        // console.log(minSubArray2([1, 4, 4], 4)) // 1 <br />
+                        function minSubArray2(arr, targetSum) &#123; <br />
+                        &ensp; let minLength = Infinity <br />
+                        &ensp; let tempMinLength = 0 <br />
+                        &ensp; let tempSum = 0 <br />
+                        &ensp; let index = 0 <br />
+                        <br />
+                        &ensp; while (index &lt; arr.length) &#123; <br />
+                        &ensp; &ensp; if (tempSum &lt; targetSum) &#123; <br />
+                        &ensp; &ensp; &ensp; tempSum = tempSum + arr[index] <br />
+                        &ensp; &ensp; &ensp; index++ <br />
+                        &ensp; &ensp; &ensp; tempMinLength++ <br />
+                        &ensp; &ensp; &#125; else &#123; <br />
+                        &ensp; &ensp; &ensp; if (tempMinLength &lt; minLength) minLength =
+                        tempMinLength <br />
+                        <br />
+                        &ensp; &ensp; &ensp; &ensp; tempSum = tempSum - arr[index - tempMinLength]{' '}
+                        <br />
+                        &ensp; &ensp; &ensp; &ensp; tempMinLength-- <br />
+                        &ensp; &ensp; &ensp; &#125; <br />
+                        &ensp; &ensp; &#125; <br />
+                        <br />
+                        &ensp; // 遍歷完 array 後，把最後的 tempSum
+                        一個一個減去其加入的值，看最小剩餘的長度為何 <br />
+                        &ensp; while (tempSum &gt;= targetSum) &#123; <br />
+                        &ensp; &ensp; if (tempMinLength &lt; minLength) minLength = tempMinLength{' '}
+                        <br />
+                        <br />
+                        &ensp; &ensp; &ensp; tempSum = tempSum - arr[index - tempMinLength] <br />
+                        &ensp; &ensp; &ensp; tempMinLength-- <br />
+                        &ensp; &ensp; &#125; <br />
+                        <br />
+                        &ensp; return minLength <br />
+                        &#125;
+                    </Code>
+                </CodeWrapper>
+            </Paragraph>
         </Layout>
     )
 }
