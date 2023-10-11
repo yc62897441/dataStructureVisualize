@@ -424,6 +424,182 @@ function AlgorithmDesign() {
                     </Code>
                 </CodeWrapper>
             </Paragraph>
+
+            <Paragraph>
+                <H3>Unique Letter Substring</H3>
+                <Text>
+                    給定一個字串，請在這個字串中，找出最長的 substring，並且這個 substring
+                    中的所有字母都沒有重複，並回傳該 substring 的長度。
+                </Text>
+                <CodeWrapper>
+                    <Code>
+                        // console.log(uniqueLetterString('thisishowwedoit')) // 6 <br />
+                        // console.log(uniqueLetterString('abccbazazbcdefefdcba')) // 7 <br />
+                        <br />
+                        function uniqueLetterString(str) &#123; <br />
+                        &ensp; const counter = &#123;&#125; <br />
+                        &ensp; let start = 0 <br />
+                        &ensp; let end = 0 <br />
+                        &ensp; let maxLength = 0 <br />
+                        <br />
+                        &ensp; while (start &lt; str.length) &#123; <br />
+                        &ensp; &ensp; if (counter[str[end]] === undefined && end &lt; str.length)
+                        &#123; <br />
+                        &ensp; &ensp; &ensp; counter[str[end]] = end <br />
+                        &ensp; &ensp; &ensp; end++ <br />
+                        &ensp; &ensp; &ensp; if (end - start &gt; maxLength) &#123; <br />
+                        &ensp; &ensp; &ensp; &ensp; maxLength = end - start <br />
+                        &ensp; &ensp; &ensp; &#125; <br />
+                        &ensp; &ensp; &#125; else if (counter[str[end]] !== true) &#123; <br />
+                        &ensp; &ensp; &ensp; start = counter[str[end]] + 1 <br />
+                        &ensp; &ensp; &ensp; counter[str[end]] = end <br />
+                        &ensp; &ensp; &ensp; for (const property in counter) &#123; <br />
+                        &ensp; &ensp; &ensp; &ensp; if (counter[property] &lt; start) &#123; <br />
+                        &ensp; &ensp; &ensp; &ensp; &ensp; counter[property] = undefined <br />
+                        &ensp; &ensp; &ensp; &ensp; &#125; <br />
+                        &ensp; &ensp; &ensp; &#125; <br />
+                        &ensp; &ensp; &ensp; end++ <br />
+                        &ensp; &ensp; &#125; <br />
+                        &ensp; &#125; <br />
+                        &ensp; return maxLength <br />
+                        &#125;
+                    </Code>
+                </CodeWrapper>
+            </Paragraph>
+
+            <Paragraph>
+                <H3>Largest Product</H3>
+                <Text>
+                    給定一個 array 內有 1000 個數字，給定另一個數字 n，請在 array 中找到 n
+                    個彼此相連的數，它們的最大乘積多少。
+                </Text>
+                <CodeWrapper>
+                    <Code>
+                        let thousandDigits = [ 7, 3, 1, 6, 7, 1, 7, 6, 5, 3, 1, 3, 3, 0, 6, 2, 4, 9,
+                        1, 9, 2, 2, 5, 1, 1, 9, 6, 7, 4, 4, 2, 6, 5, 7, 4, 7, 4, 2, 3, 5, 5, 3, 4,
+                        9, 1, 9, 4, 9, 3, 4, 9, 6, 9, 8, 3, 5, 2, 0, 3, 1, 2, 7, 7, 4, 5, 0, 6, 3,
+                        2, 6, 2, 3, 9, 5, 7, 8, 3...] <br />
+                        // console.log(largestProduct(thousandDigits, 4)) <br />
+                        <br />
+                        function largestProduct(array, n) &#123; <br />
+                        &ensp; // 排除例外狀況，n &gt; array.length <br />
+                        &ensp; if (n &gt; array.length) return null <br />
+                        &ensp; <br />
+                        &ensp; // 宣告要使用的變數 <br />
+                        &ensp; let largestProduct = -Infinity <br />
+                        &ensp; let start = 0 <br />
+                        &ensp; let end = n - 1 <br />
+                        &ensp; <br />
+                        &ensp; // 運用 sliding window + pointer 的概念，慢慢往後檢查每一組的乘積{' '}
+                        <br />
+                        &ensp; while (end &lt; array.length) &#123; <br />
+                        &ensp; &ensp; let tempProduct = 1 <br />
+                        &ensp; &ensp; for (let i = start; i &lt;= end; i++) &#123; <br />
+                        &ensp; &ensp; &ensp; tempProduct = tempProduct * array[i] <br />
+                        &ensp; &ensp; &#125; <br />
+                        &ensp; &ensp; <br />
+                        &ensp; &ensp; if (tempProduct &gt; largestProduct) &#123; <br />
+                        &ensp; &ensp; &ensp; largestProduct = tempProduct <br />
+                        &ensp; &ensp; &#125; <br />
+                        &ensp; &ensp; start++ <br />
+                        &ensp; &ensp; end++ <br />
+                        &ensp; &#125; <br />
+                        &ensp; return largestProduct <br />
+                        &#125;
+                    </Code>
+                </CodeWrapper>
+            </Paragraph>
+
+            <Paragraph>
+                <H3>Recursion</H3>
+                <Text>
+                    給定一個 n(正整數)，寫出一個 function 可以回傳數列 T 第 n 項的值。
+                    <br />
+                    例如：如果 T(1) = 10; T(2) = T(1) + 15; T(n) = T(n - 1) + 15。
+                </Text>
+                <CodeWrapper>
+                    <Code>
+                        function findSequence(n) &#123; <br />
+                        &ensp; if (n === 1) &#123; <br />
+                        &ensp; &ensp; return 10 <br />
+                        &ensp; &#125; <br />
+                        &ensp; return findSequence(n - 1) + 15 <br />
+                        &#125;
+                    </Code>
+                </CodeWrapper>
+            </Paragraph>
+
+            <Paragraph>
+                <H3>Fibonacci Sequence</H3>
+                <Text>
+                    寫出費波那契數程式碼。
+                    <br />
+                    F0 = 0 <br />
+                    F1 = 1 <br />
+                    Fn = F(n-1) + F(n-2)，n &gt;= 2
+                </Text>
+                <CodeWrapper>
+                    <Code>
+                        // 解法 1 複雜度 O(2^n) <br />
+                        function fibonacci(n) &#123; <br />
+                        &ensp; if (n === 0) return 0 <br />
+                        &ensp; if (n === 1) return 1 <br />
+                        <br />
+                        &ensp; return fibonacci(n - 1) + fibonacci(n - 2) <br />
+                        &#125; <br />
+                        <br />
+                        // 解法 2 複雜度 O(n) <br />
+                        function fibonacci_2(n) &#123; <br />
+                        &ensp; if (n === 0) return 0 <br />
+                        &ensp; if (n === 1) return 1 <br />
+                        <br />
+                        &ensp; let a = 0 <br />
+                        &ensp; let b = 1 <br />
+                        &ensp; let total = 0 <br />
+                        &ensp; for (let i = 2; i &lt;= n; i++) &#123; <br />
+                        &ensp; &ensp; total = a + b <br />
+                        &ensp; &ensp; a = b <br />
+                        &ensp; &ensp; b = total <br />
+                        &ensp; &#125; <br />
+                        &ensp; return total <br />
+                        &#125;
+                    </Code>
+                </CodeWrapper>
+            </Paragraph>
+
+            <Paragraph>
+                <H3>Array of Arrays</H3>
+                <Text>
+                    寫一個 function，收集所以在 array of arrays 中的值，並且把收集的結果存到一個
+                    array 中回傳。
+                </Text>
+                <CodeWrapper>
+                    <Code>
+                        // console.log(deconstructArr(arrs)) // ['a', 'b', 'c', 'd', 'e', 'f', 'g',
+                        'h'] <br />
+                        <br />
+                        let arrs = [[[['a', [['b', ['c']], ['d']]], [['e']], [[['f', 'g', 'h']]]]]]{' '}
+                        <br />
+                        <br />
+                        function deconstructArr(arrs) &#123; <br />
+                        &ensp; const result = [] <br />
+                        &ensp; fn(arrs) <br />
+                        <br />
+                        &ensp; function fn(array) &#123; <br />
+                        &ensp; &ensp; array.forEach((element) =&gt; &#123; <br />
+                        &ensp; &ensp; &ensp; if (Array.isArray(element)) &#123; <br />
+                        &ensp; &ensp; &ensp; &ensp; fn(element) <br />
+                        &ensp; &ensp; &ensp; &#125; else &#123; <br />
+                        &ensp; &ensp; &ensp; &ensp; result.push(element) <br />
+                        &ensp; &ensp; &ensp; &#125; <br />
+                        &ensp; &ensp; &#125;) <br />
+                        &ensp; &#125; <br />
+                        <br />
+                        &ensp; return result <br />
+                        &#125;
+                    </Code>
+                </CodeWrapper>
+            </Paragraph>
         </Layout>
     )
 }
