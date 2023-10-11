@@ -24,6 +24,11 @@ const MainWrapper = styled.section`
         margin-top: 80px;
     }
 `
+const MainContainer = styled.section`
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+`
 
 const ScrollToTop = styled.div`
     position: absolute;
@@ -50,7 +55,9 @@ export default function Layout({ children }) {
     return (
         <LayoutWrapper>
             <Header />
-            <MainWrapper>{children}</MainWrapper>
+            <MainWrapper>
+                <MainContainer>{children}</MainContainer>
+            </MainWrapper>
             <ScrollToTop onClick={scrollToTop}>
                 <Image
                     src="/images/arrow.png" // Route of the image file
